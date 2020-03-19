@@ -61,6 +61,15 @@ class TrainOptimizeScript(TrainScript):
         super().__init__(args)
         self.bb = BlackBoxOptimizer(file=self.args.trials_name)
 
+        if not self.test:
+            data = TrainData.from_both(self.args.tags_file, self.args.tags_folder, self.args.folder)
+            _, self.test = data.load(False, True)
+
+        from tensorflow.keras.callbacks import ModelCheckpoint
+        for i in list(self.callbacks):
+            if isinstance(i, ModelCheckpoint):
+                self.callbacks.remove(i)
+
     def calc_params_cost(self, model):
         """
         Models the real world cost of additional model parameters
@@ -75,6 +84,20 @@ class TrainOptimizeScript(TrainScript):
         rather than chosen relatively arbitrarily
         """
         return 1.0 + exp((model.count_params() - 11000) / 10000)
+
+    def process_args(self, args: Any):
+        model_parts = glob(splitext(args.model)[0] + '.*')
+        if len(model_parts) < 5:
+            for name in model_parts:
+                if isfile(name):
+                    remove(name)
+                else:
+                    rmtree(name)
+        args.trials_name = args.trials_name.replace('.bbopt.json', '').replace('.json', '')
+        if not args.trials_name:
+            if isfile(join('.cache', 'trials.bbopt.json')):
+                remove(join('.cache', 'trials.bbopt.json'))
+            args.trials_name = join('.cache', 'trials')
 
     def run(self):
         self.bb.run(alg='tree_structured_parzen_estimator')

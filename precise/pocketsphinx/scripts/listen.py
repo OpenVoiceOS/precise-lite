@@ -12,24 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""
-Run Pocketsphinx on microphone audio input
-
-:key_phrase str
-    Key phrase composed of words from dictionary
-
-:dict_file str
-    Filename of dictionary with word pronunciations
-
-:hmm_folder str
-    Folder containing hidden markov model
-
-:-th --threshold str 1e-90
-    Threshold for activations
-
-:-c --chunk-size int 2048
-    Samples between inferences
-"""
 from precise_runner import PreciseRunner
 from precise_runner.runner import ListenerEngine
 from prettyparse import Usage
@@ -41,7 +23,24 @@ from precise.util import activate_notify
 
 
 class PocketsphinxListenScript(BaseScript):
-    usage = Usage(__doc__)
+    usage = Usage('''
+        Run Pocketsphinx on microphone audio input
+
+        :key_phrase str
+            Key phrase composed of words from dictionary
+
+        :dict_file str
+            Filename of dictionary with word pronunciations
+
+        :hmm_folder str
+            Folder containing hidden markov model
+
+        :-th --threshold str 1e-90
+            Threshold for activations
+
+        :-c --chunk-size int 2048
+            Samples between inferences
+    ''')
 
     def run(self):
         def on_activation():

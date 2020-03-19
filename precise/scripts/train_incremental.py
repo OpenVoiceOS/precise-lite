@@ -35,7 +35,7 @@ marking false activations and retraining
 ...
 """
 import numpy as np
-from os import makedirs
+from os import makedirs, rename
 from os.path import basename, splitext, isfile, join
 from prettyparse import Usage
 from random import random
@@ -108,7 +108,8 @@ class TrainIncrementalScript(TrainScript):
                 validation_data=test_data, callbacks=self.callbacks, initial_epoch=self.epoch
             )
         finally:
-            self.listener.runner.model.save(self.args.model)
+            self.listener.runner.model.save(self.args.model + '.h5') # Save with '.h5' file extension to force format
+            rename(self.args.model + '.h5', self.args.model) # Rename with original
 
     def train_on_audio(self, fn: str):
         """Run through a single audio file"""

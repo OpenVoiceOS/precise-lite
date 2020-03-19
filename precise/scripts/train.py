@@ -87,7 +87,7 @@ class TrainScript(BaseScript):
         self.model = create_model(args.model, params)
         self.train, self.test = self.load_data(self.args)
 
-        from keras.callbacks import ModelCheckpoint, TensorBoard
+        from keras.callbacks import ModelCheckpoint
         checkpoint = ModelCheckpoint(args.model, monitor=args.metric_monitor,
                                      save_best_only=args.save_best)
         epoch_fiti = Fitipy(splitext(args.model)[0] + '.epoch')
@@ -106,9 +106,8 @@ class TrainScript(BaseScript):
             self.hash_to_ind = {}
 
         self.callbacks = [
-            checkpoint, TensorBoard(
-                log_dir=self.model_base + '.logs',
-            ), LambdaCallback(on_epoch_end=on_epoch_end)
+          checkpoint,
+          LambdaCallback(on_epoch_end=on_epoch_end),
         ]
 
     @staticmethod
@@ -162,7 +161,9 @@ class TrainScript(BaseScript):
         self.model.fit(
             train_inputs, train_outputs, self.args.batch_size,
             self.epoch + self.args.epochs, validation_data=self.test,
-            initial_epoch=self.epoch, callbacks=self.callbacks
+            initial_epoch=self.epoch, callbacks=self.callbacks,
+            use_multiprocessing=True, validation_freq=5,
+            verbose=1
         )
 
 
