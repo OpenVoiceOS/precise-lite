@@ -42,7 +42,7 @@ def weighted_log_loss(yt, yp) -> Any:
     yt: Target
     yp: Prediction
     """
-    from keras import backend as K
+    import tensorflow.keras.backend as K
 
     pos_loss = -(0 + yt) * K.log(0 + yp + K.epsilon())
     neg_loss = -(1 - yt) * K.log(1 - yp + K.epsilon())
@@ -51,8 +51,7 @@ def weighted_log_loss(yt, yp) -> Any:
 
 
 def weighted_mse_loss(yt, yp) -> Any:
-    """Standard mse loss with a weighting between false negatives and positives"""
-    from keras import backend as K
+    import tensorflow.keras.backend as K
 
     total = K.sum(K.ones_like(yt))
     neg_loss = total * K.sum(K.square(yp * (1 - yt))) / K.sum(1 - yt)
@@ -62,22 +61,12 @@ def weighted_mse_loss(yt, yp) -> Any:
 
 
 def false_pos(yt, yp) -> Any:
-    """
-    Metric for Keras that *estimates* false positives while training
-    This will not be completely accurate because it weights batches
-    equally
-    """
-    from keras import backend as K
+    import tensorflow.keras.backend as K
     return K.sum(K.cast(yp * (1 - yt) > 0.5, 'float')) / K.maximum(1.0, K.sum(1 - yt))
 
 
 def false_neg(yt, yp) -> Any:
-    """
-    Metric for Keras that *estimates* false negatives while training
-    This will not be completely accurate because it weights batches
-    equally
-    """
-    from keras import backend as K
+    import tensorflow.keras.backend as K
     return K.sum(K.cast((1 - yp) * (0 + yt) > 0.5, 'float')) / K.maximum(1.0, K.sum(0 + yt))
 
 
