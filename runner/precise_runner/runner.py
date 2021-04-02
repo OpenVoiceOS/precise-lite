@@ -232,6 +232,7 @@ class PreciseRunner(object):
     def _handle_predictions(self):
         """Continuously check Precise process output"""
         while self.running:
+            t0 = time.time()
             chunk = self.stream.read(self.chunk_size)
 
             if self.is_paused:
@@ -241,3 +242,5 @@ class PreciseRunner(object):
             self.on_prediction(prob)
             if self.detector.update(prob):
                 self.on_activation()
+            t1 = time.time()
+            print("Prediction time: %.4f" % ((t1-t0)))
