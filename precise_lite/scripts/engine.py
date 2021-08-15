@@ -28,9 +28,9 @@ import sys
 import os
 from prettyparse import Usage
 
-from precise import __version__
-from precise.network_runner import Listener
-from precise.scripts.base_script import BaseScript
+from precise_lite import __version__
+from precise_lite.network_runner import Listener
+from precise_lite.scripts.base_script import BaseScript
 
 
 def add_audio_pipe_to_parser(parser):

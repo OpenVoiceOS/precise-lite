@@ -68,12 +68,12 @@ from prettyparse import Usage
 from random import random, shuffle
 from typing import *
 
-from precise.model import create_model, ModelParams
-from precise.network_runner import Listener
-from precise.params import pr, save_params
-from precise.scripts.base_script import BaseScript
-from precise.train_data import TrainData
-from precise.util import load_audio, glob_all, save_audio, chunk_audio
+from precise_lite.model import create_model, ModelParams
+from precise_lite.network_runner import Listener
+from precise_lite.params import pr, save_params
+from precise_lite.scripts.base_script import BaseScript
+from precise_lite.train_data import TrainData
+from precise_lite.util import load_audio, glob_all, save_audio, chunk_audio
 
 
 class TrainGeneratedScript(BaseScript):

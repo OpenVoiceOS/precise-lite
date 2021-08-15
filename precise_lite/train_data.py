@@ -24,8 +24,8 @@ from prettyparse import Usage
 from pyache import Pyache
 from typing import *
 
-from precise.util import find_wavs, load_audio
-from precise.vectorization import vectorize_delta, vectorize
+from precise_lite.util import find_wavs, load_audio
+from precise_lite.vectorization import vectorize_delta, vectorize
 
 
 class TrainData:
@@ -144,7 +144,7 @@ class TrainData:
         """Generate data with inhibitory inputs created from wake word samples"""
 
         def loader(kws: list, nkws: list):
-            from precise.params import pr
+            from precise_lite.params import pr
             inputs = np.empty((0, pr.n_features, pr.feature_size))
             outputs = np.zeros((len(kws), 1))
             for f in kws:
@@ -187,7 +187,7 @@ class TrainData:
 
     @staticmethod
     def __load_files(kw_files: list, nkw_files: list, vectorizer: Callable = None, shuffle=True) -> tuple:
-        from precise.params import pr
+        from precise_lite.params import pr
 
         input_parts = []
         output_parts = []
@@ -218,7 +218,7 @@ class TrainData:
         print('Loading not-wake-word...')
         add(nkw_files, 0.0)
 
-        from precise.params import pr
+        from precise_lite.params import pr
         inputs = np.concatenate(input_parts) if input_parts else np.empty((0, pr.n_features, pr.feature_size))
         outputs = np.concatenate(output_parts) if output_parts else np.empty((0, 1))
 

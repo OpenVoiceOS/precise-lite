@@ -16,9 +16,9 @@
 Use black box optimization to tune model hyperparameters. Call
 this script in a loop to iteratively tune parameters
 
-:trials_name str
-    Filename to save hyperparameter optimization trials in
-    '.bbopt.json' will automatically be appended
+from precise_lite.model import ModelParams, create_model
+from precise_lite.scripts.train import TrainScript
+from precise_lite.train_data import TrainData
 
 :noise_folder str
     Folder with random noise to evaluate ambient activations

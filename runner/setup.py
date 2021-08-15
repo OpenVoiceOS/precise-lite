@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from setuptools import setup, find_packages
-from precise_runner import __version__
+from precise_lite_runner import __version__
 
 setup(
-    name='precise-runner',
+    name='precise_lite_runner',
     version=__version__,
     packages=find_packages(),
     install_requires=[
@@ -25,10 +25,9 @@ setup(
 
     author='Matthew Scholefield',
     author_email='matthew.scholefield@mycroft.ai',
-    description='Wrapper to use Mycroft Precise Wake Word Listener',
+    description='Wrapper to use OVOS Precise-lite Wake Word Listener',
     keywords='wakeword keyword wake word listener sound',
-    url='http://github.com/MycroftAI/mycroft-precise',
-
+    url='https://github.com/OpenVoiceOS/precise-lite',
     zip_safe=True,
     classifiers=[
         'Development Status :: 3 - Alpha',

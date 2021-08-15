@@ -34,8 +34,8 @@ from itertools import islice
 from fitipy import Fitipy
 from prettyparse import Usage
 
-from precise.scripts.train import TrainScript
-from precise.util import calc_sample_hash
+from precise_lite.scripts.train import TrainScript
+from precise_lite.util import calc_sample_hash
 
 
 class TrainSampledScript(TrainScript):

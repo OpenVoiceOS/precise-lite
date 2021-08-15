@@ -27,7 +27,7 @@ from os.path import split, isfile
 from prettyparse import Usage
 from shutil import copyfile
 
-from precise.scripts.base_script import BaseScript
+from precise_lite.scripts.base_script import BaseScript
 
 class ConvertScript(BaseScript):
     usage = Usage('''
@@ -57,8 +57,8 @@ class ConvertScript(BaseScript):
 
         import tensorflow as tf # Using tensorflow v2.2
         from tensorflow import keras as K
-        from precise.model import load_precise_model
-        from precise.functions import weighted_log_loss
+        from precise_lite.model import load_precise_model
+        from precise_lite.functions import weighted_log_loss
 
         out_dir, filename = split(out_file)
         out_dir = out_dir or '.'

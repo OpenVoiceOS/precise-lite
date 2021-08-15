@@ -21,11 +21,11 @@ from os.path import splitext
 from typing import *
 from typing import BinaryIO
 
-from precise.threshold_decoder import ThresholdDecoder
-from precise.model import load_precise_model
-from precise.params import inject_params, pr
-from precise.util import buffer_to_audio
-from precise.vectorization import vectorize_raw, add_deltas
+from precise_lite.threshold_decoder import ThresholdDecoder
+from precise_lite.model import load_precise_model
+from precise_lite.params import inject_params, pr
+from precise_lite.util import buffer_to_audio
+from precise_lite.vectorization import vectorize_raw, add_deltas
 
 
 class Runner(metaclass=ABCMeta):

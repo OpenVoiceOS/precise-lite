@@ -15,8 +15,11 @@
 """
 Train a new model on a dataset
 
-:model str
-    Keras model file (.net) to load from and save to
+from precise_lite.model import create_model, ModelParams
+from precise_lite.params import inject_params, save_params
+from precise_lite.scripts.base_script import BaseScript
+from precise_lite.train_data import TrainData
+from precise_lite.util import calc_sample_hash
 
 :-sf --samples-file str -
     Loads subset of data from the provided json file
@@ -28,9 +31,9 @@ Train a new model on a dataset
 :-e --epochs int 10
     Number of epochs to train model for
 
-:-s --sensitivity float 0.2
-    Target sensitivity when training. Higher values cause
-    more false positives
+        :-sf --samples-file str -
+            Loads subset of data from the provided json file
+            generated with precise_lite-train-sampled
 
 :-b --batch-size int 5000
     Batch size for training

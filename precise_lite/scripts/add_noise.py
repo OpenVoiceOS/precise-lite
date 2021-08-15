@@ -47,10 +47,10 @@ import shutil
 from prettyparse import Usage
 from random import random
 
-from precise.scripts.base_script import BaseScript
-from precise.train_data import TrainData
-from precise.util import load_audio
-from precise.util import save_audio
+from precise_lite.scripts.base_script import BaseScript
+from precise_lite.train_data import TrainData
+from precise_lite.util import load_audio
+from precise_lite.util import save_audio
 
 
 class NoiseData:

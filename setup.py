@@ -14,18 +14,16 @@
 # limitations under the License.
 from setuptools import setup
 
-from precise import __version__
+from precise_lite import __version__
 
 setup(
-    name='mycroft-precise',
+    name='precise_lite',
     version=__version__,
     license='Apache-2.0',
     author='Matthew Scholefield',
     author_email='matthew.scholefield@mycroft.ai',
-    description='Mycroft Precise Wake Word Listener',
-    long_description='View more info at `the GitHub page '
-                     '<https://github.com/mycroftai/mycroft-precise#mycroft-precise>`_',
-    url='http://github.com/MycroftAI/mycroft-precise',
+    description='Mycroft Precise Wake Word Listener, Lite version (OpenVoiceOS)',
+    url='https://github.com/OpenVoiceOS/precise-lite',
     keywords='wakeword keyword wake word listener sound',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -43,30 +41,26 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     packages=[
-        'precise',
-        'precise.scripts',
-        'precise.pocketsphinx',
-        'precise.pocketsphinx.scripts'
+        'precise_lite',
+        'precise_lite.scripts'
     ],
     entry_points={
         'console_scripts': [
-            'precise-add-noise=precise.scripts.add_noise:main',
-            'precise-collect=precise.scripts.collect:main',
-            'precise-convert=precise.scripts.convert:main',
-            'precise-eval=precise.scripts.eval:main',
-            'precise-listen=precise.scripts.listen:main',
-            'precise-listen-pocketsphinx=precise.pocketsphinx.scripts.listen:main',
-            'precise-engine=precise.scripts.engine:main',
-            'precise-simulate=precise.scripts.simulate:main',
-            'precise-test=precise.scripts.test:main',
-            'precise-graph=precise.scripts.graph:main',
-            'precise-test-pocketsphinx=precise.pocketsphinx.scripts.test:main',
-            'precise-train=precise.scripts.train:main',
-            'precise-train-optimize=precise.scripts.train_optimize:main',
-            'precise-train-sampled=precise.scripts.train_sampled:main',
-            'precise-train-incremental=precise.scripts.train_incremental:main',
-            'precise-train-generated=precise.scripts.train_generated:main',
-            'precise-calc-threshold=precise.scripts.calc_threshold:main',
+            'precise-lite-add-noise=precise_lite.scripts.add_noise:main',
+            'precise-lite-collect=precise_lite.scripts.collect:main',
+            'precise-lite-convert=precise_lite.scripts.convert:main',
+            'precise-lite-eval=precise_lite.scripts.eval:main',
+            'precise-lite-listen=precise_lite.scripts.listen:main',
+            'precise-lite-engine=precise_lite.scripts.engine:main',
+            'precise-lite-simulate=precise_lite.scripts.simulate:main',
+            'precise-lite-test=precise_lite.scripts.test:main',
+            'precise-lite-graph=precise_lite.scripts.graph:main',
+            'precise-lite-train=precise_lite.scripts.train:main',
+            'precise-lite-train-optimize=precise_lite.scripts.train_optimize:main',
+            'precise-lite-train-sampled=precise_lite.scripts.train_sampled:main',
+            'precise-lite-train-incremental=precise_lite.scripts.train_incremental:main',
+            'precise-lite-train-generated=precise_lite.scripts.train_generated:main',
+            'precise-lite-calc-threshold=precise_lite.scripts.calc_threshold:main',
         ]
     },
     include_package_data=True,
@@ -79,7 +73,7 @@ setup(
         'wavio',
         'typing',
         'prettyparse>=1.1.0',
-        'precise-runner',
+        'precise_lite_runner',
         'attrs',
         'fitipy<1.0',
         'speechpy-fast',

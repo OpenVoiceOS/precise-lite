@@ -34,7 +34,7 @@ from os.path import isfile
 from prettyparse import Usage
 from pyaudio import PyAudio
 
-from precise.scripts.base_script import BaseScript
+from precise_lite.scripts.base_script import BaseScript
 
 
 def record_until(p, should_return, args):
@@ -65,7 +65,18 @@ class CollectScript(BaseScript):
     RECORD_KEY = ' '
     EXIT_KEY_CODE = 27
 
-    usage = Usage(__doc__)
+    usage = Usage('''
+        Record audio samples for use with precise_lite
+
+        :-w --width int 2
+            Sample width of audio
+
+        :-r --rate int 16000
+            Sample rate of audio
+
+        :-c --channels int 1
+            Number of audio channels
+    ''')
     usage.add_argument('file_label', nargs='?', help='File label (Ex. recording-##)')
 
     def __init__(self, args):

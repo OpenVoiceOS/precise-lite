@@ -19,8 +19,8 @@ import numpy as np
 import os
 from typing import *
 
-from precise.params import pr, Vectorizer
-from precise.util import load_audio, InvalidAudio
+from precise_lite.params import pr, Vectorizer
+from precise_lite.util import load_audio, InvalidAudio
 from sonopy import mfcc_spec, mel_spec
 
 inhibit_t = 0.4

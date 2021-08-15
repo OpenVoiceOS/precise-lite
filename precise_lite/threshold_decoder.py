@@ -17,7 +17,7 @@ Code for converting network output to confidence level
 import numpy as np
 from typing import Tuple
 
-from precise.functions import asigmoid, sigmoid, pdf
+from precise_lite.functions import asigmoid, sigmoid, pdf
 
 
 class ThresholdDecoder:

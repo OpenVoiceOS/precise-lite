@@ -18,8 +18,9 @@ import attr
 from os.path import isfile
 from typing import *
 
-from precise.functions import load_keras, false_pos, false_neg, weighted_log_loss, set_loss_bias
-from precise.params import inject_params, pr
+from precise_lite.functions import load_keras, false_pos, false_neg, \
+    weighted_log_loss, set_loss_bias
+from precise_lite.params import inject_params, pr
 
 if TYPE_CHECKING:
     from tensorflow.keras.models import Sequential
@@ -57,7 +58,7 @@ def load_precise_model(model_name: str) -> Any:
 
 def create_model(model_name: Optional[str], params: ModelParams) -> 'Sequential':
     """
-    Load or create a precise model
+    Load or create a precise_lite model
 
     Args:
         model_name: Name of model

@@ -35,11 +35,11 @@ from os.path import join, basename
 from precise_runner.runner import TriggerDetector
 from prettyparse import Usage
 
-from precise.network_runner import Listener
-from precise.params import pr, inject_params
-from precise.scripts.base_script import BaseScript
-from precise.util import load_audio
-from precise.vectorization import vectorize_raw
+from precise_lite.network_runner import Listener
+from precise_lite.params import pr, inject_params
+from precise_lite.scripts.base_script import BaseScript
+from precise_lite.util import load_audio
+from precise_lite.vectorization import vectorize_raw
 
 
 @attr.s()

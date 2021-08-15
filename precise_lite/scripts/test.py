@@ -31,11 +31,11 @@ Test a model against a dataset
 """
 from prettyparse import Usage
 
-from precise.network_runner import Listener
-from precise.params import inject_params
-from precise.scripts.base_script import BaseScript
-from precise.stats import Stats
-from precise.train_data import TrainData
+from precise_lite.network_runner import Listener
+from precise_lite.params import inject_params
+from precise_lite.scripts.base_script import BaseScript
+from precise_lite.stats import Stats
+from precise_lite.train_data import TrainData
 
 
 class TestScript(BaseScript):

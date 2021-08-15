@@ -19,7 +19,7 @@ import numpy as np
 from os.path import join, dirname, abspath
 from typing import *
 
-from precise.params import pr
+from precise_lite.params import pr
 
 
 class InvalidAudio(ValueError):
