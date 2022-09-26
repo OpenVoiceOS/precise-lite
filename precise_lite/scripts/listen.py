@@ -12,16 +12,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import numpy as np
 from os.path import join
-from precise_lite_runner import PreciseRunner
-from precise_lite_runner.runner import ListenerEngine
-from prettyparse import Usage
 from random import randint
 from shutil import get_terminal_size
 from threading import Event
 
-from precise_lite.network_runner import Listener
+import numpy as np
+from precise_lite_runner import PreciseLiteListener
+from prettyparse import Usage
+
 from precise_lite.scripts.base_script import BaseScript
 from precise_lite.util import save_audio, buffer_to_audio, activate_notify
 
@@ -54,12 +53,9 @@ class ListenScript(BaseScript):
 
     def __init__(self, args):
         super().__init__(args)
-        self.listener = Listener(args.model, args.chunk_size)
-        self.audio_buffer = np.zeros(self.listener.pr.buffer_samples, dtype=float)
-        self.engine = ListenerEngine(self.listener, args.chunk_size)
-        self.engine.get_prediction = self.get_prediction
-        self.runner = PreciseRunner(self.engine, args.trigger_level, sensitivity=args.sensitivity,
-                                    on_activation=self.on_activation, on_prediction=self.on_prediction)
+        self.listener = PreciseLiteListener(model=args.model, chunk_size=args.chunk_size,
+                                            trigger_level=args.trigger_level, sensitivity=args.sensitivity,
+                                            on_activation=self.on_activation, on_prediction=self.on_prediction)
         self.session_id, self.chunk_num = '%09d' % randint(0, 999999999), 0
 
     def on_activation(self):
@@ -67,7 +63,7 @@ class ListenScript(BaseScript):
 
         if self.args.save_dir:
             nm = join(self.args.save_dir, self.args.save_prefix + self.session_id + '.' + str(self.chunk_num) + '.wav')
-            save_audio(nm, self.audio_buffer)
+            save_audio(nm, self.listener.audio_buffer)
             print()
             print('Saved to ' + nm + '.')
             self.chunk_num += 1
@@ -85,11 +81,11 @@ class ListenScript(BaseScript):
 
     def get_prediction(self, chunk):
         audio = buffer_to_audio(chunk)
-        self.audio_buffer = np.concatenate((self.audio_buffer[len(audio):], audio))
+        self.listener.audio_buffer = np.concatenate((self.listener.audio_buffer[len(audio):], audio))
         return self.listener.update(chunk)
 
     def run(self):
-        self.runner.start()
+        self.listener.start()
         Event().wait()  # Wait forever
 
 
