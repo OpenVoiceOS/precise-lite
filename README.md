@@ -1,5 +1,8 @@
 # Mycroft Precise-Lite
 
+**DEPRECATED** - for the original precise use mycroft repo, for the OpenVoiceOS maintained repo see https://github.com/OpenVoiceOS/precise-lite-trainer
+
+
 *A lightweight, simple-to-use, RNN wake word listener.*
 
 Precise is a wake word listener.  The software monitors an audio stream ( usually a microphone ) and when it recognizes a specific phrase it triggers an event.  For example, at Mycroft AI the team has trained Precise to recognize the phrase "Hey, Mycroft".  When the software recognizes this phrase it puts the rest of Mycroft's software into command mode and waits for a command from the person using the device.  Mycroft Precise is fully open source and can be trined to recognize anything from a name to a cough.
